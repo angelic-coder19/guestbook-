@@ -6,26 +6,40 @@
         </title>
         <link rel="stylesheet" href="styles.css">
         <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale = 1.0">
     </head>
     <body> 
         <div id="header">
             <h1>Share Your Thoughts!</h1>
         </div>
         <div id="main-paragraph">
-            <p>Leaving the friendly city already<span class="emoji">&#128532</span>? We are glad you visited<span class="emoji">&#128515</span>. share your <i>Zimandola</i> experience 
+            <p>Leaving the friendly city already<span class="emoji">&#128532</span>? We are glad you visited<span class="emoji">&#128515</span>. share your <strong><i>Zimandola</i></strong> experience 
                 with us by leaving a comment below!<span class="emoji">&#128071</span>
             </p>  
         </div>
-        <div id="form">
-            <form> 
-                <label for="Name">Name:</label><br>
-                <input type="text" id="Name"><br>
-                <label for="email">Email:</label><br>
-                <input type="text" id="email"><br>
-                <label for="comment">Comment:</label><br>
-                <textarea id="comment" rows="4"></textarea><br>
-                <input type="submit">
-            </form>
+        <div class="main">
+            <div id="form">
+                <form> 
+                    <label for="Name">Name:</label><br>
+                    <input type="text"  id="Name"><br>
+                    <label for="email">Email:</label><br>
+                    <input type="text" placeholder="example@gmail.com" id="email"><br>
+                    <label for="comment">Comment:</label><br>
+                    <textarea id="comment" placeholder="Tell us about your experience!" rows="4"></textarea><br>
+                    <div id="button">
+                        <input type="submit">
+                    </div>
+                </form>
+            </div>
+            <div id="viewComment">
+                <h3>What Others have to say</h3> 
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
         </div>
+        <footer>
+            <h3>About Us</h3>
+            <p>You can contact us on our socials!</p>
+        </footer>
     </body>
 </html>
