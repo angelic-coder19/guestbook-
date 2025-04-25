@@ -44,6 +44,10 @@ div.footer{
     text-align: center;
     color: #ffffff; 
 }
+.error{
+    color: #ff0000;
+    font-size: smaller; 
+}
 #viewComment{
     border-radius: 15px;
     background-color: gray;
