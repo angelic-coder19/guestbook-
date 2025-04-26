@@ -12,25 +12,41 @@
     // Create variables that will contain the contents of the form
     $name = $email = $comment = $time = "";
 
-    // Make variables that will display errors when the fields are blank 
+    // Make variables that will display errors
     $name_error = $email_error = $comment_error = "";
+
+    // Variable that will check if any errors have been detected in the form 
+    $error = false;
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
         if (empty($_POST['name']))
         {
             $name_error = "Name field is empty";
+            $error = true;
         } else {
             $name = clean_input($_POST['name']);
+            if (!preg_match("/^[a-zA-Z-' ]*$/",$name))
+            {
+                $name_error = "Only letters and white space allowed";
+                $error = true;
+            }
         }
         if (empty($_POST['email']))
         {
-            $name_error = "Email is empty";
+            $email_error = "Email is empty";
+            $error = true;
         } else {
             $email = clean_input($_POST['email']);
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
+                $email_error = "Invaid email format";
+                $error = true;
+            }
         } 
         if (empty($_POST['comment']))
         {
             $comment_error = "Please leave a comment";
+            $error = true;
         } else {
             $comment = clean_input($_POST['comment']);
         }
@@ -41,9 +57,9 @@
 
     // create a function that will validate the input from the user
     function clean_input($input){
-        $input = htmlspecialchars($input);
         $input = stripslashes($input);
         $input = trim($input);
+        $input = htmlspecialchars($input);        
         return $input;
     }
     ?>
@@ -59,12 +75,12 @@
         </div>
         <div class="row">
             <div id="form">
-                <form method ="POST" action ="<?php echo $_SERVER['PHP_SELF'] ?>"> 
+                <form method ="POST" action ="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>"> 
                     <label for="Name" name= "name">Name:</label><br>
-                    <input type = "text" name = "name" id = "name">
+                    <input type = "text" name = "name" id = "name" value = "<?php echo $name ?>">
                     <span class = "error" ><?php echo $name_error ?></span> <br>
                     <label for="email">Email:</label><br>
-                    <input type="text" name= "email" placeholder="example@gmail.com" id="email">
+                    <input type="text" name= "email" placeholder="example@gmail.com" id="email" value = "<?php echo $email ?>">
                     <span class = "error"><?php echo $email_error ?> </span><br>
                     <label for="comment">Comment:</label> 
                     <span class = "error" ><?php echo $comment_error ?></span><br>
@@ -77,8 +93,11 @@
             <div id="viewComment">
                 <h3>What Others have to say</h3> 
                 <p><?php 
-                    // Displays the input of the user with the timestamp
-                    echo "$comment <br><br> $name <br> $email <br> $time" 
+                    // Displays the input of the user with the timestamp only if no errors have been detected
+                    if (!$error)
+                    {
+                        echo "$comment <br><br> $name <br> $email <br> $time <br>";
+                    }
                 ?></p>
             </div>
         </div>
