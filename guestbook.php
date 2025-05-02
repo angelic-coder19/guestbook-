@@ -2,13 +2,16 @@
 </html>
     <head>
         <title>
-            Guestbook
+            The Ndola Guestbook
         </title>
         <link rel="stylesheet" href="styles.css">
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale = 1.0">
     <?php 
+    // Connect with the database file
+    include "db_queries.php";
+
     // Create variables that will contain the contents of the form
     $name = $email = $comment = $time = "";
 
@@ -66,9 +69,17 @@
     </head>
     <body>
         <div id="header">
-            <h1>Share Your Thoughts!</h1>
+            <h1>The Ndola Experience</h1>
+        </div><div id = inner>
+                <h2>Share Your Thoughts!</h2> 
         </div>
-        <div id="main-paragraph">
+        <div id="main-paragraph"> 
+            <P>
+                <b>Welcome to the Ndola Guestbook - your space to share memories, moments and stories about our beautiful city!</b>
+                Whether you are a local, visitor, or someone passing through, 
+                we would love to hear about your experiences in Ndola. From the lively streets of Masala 
+                to the calm evenings of Itawa, every story adds a little more heart to our city story.
+            </p>
             <p>Leaving the friendly city already<span class="emoji">&#128532</span>? We are glad you visited<span class="emoji">&#128515</span>. share your <strong><i>Zimandola</i></strong> experience 
                 with us by leaving a comment below!<span class="emoji">&#128071</span>
             </p>  
@@ -87,17 +98,55 @@
                     <textarea id="comment" name = "comment" placeholder="Tell us about your experience!" rows="4"></textarea><br>
                     <div id="button">
                         <input type="submit">
-                    </div>
+                    </div> 
                 </form>
             </div>
             <div id="viewComment">
-                <h3>What Others have to say</h3> 
+                <div id="ViewHeader">
+                    <h3>What Others have to say</h3>
+                </div> 
                 <p><?php 
                     // Displays the input of the user with the timestamp only if no errors have been detected
                     if (!$error)
                     {
-                        echo "$comment <br><br> $name <br> $email <br> $time <br>";
+                        // Send data to the data base using prepared statement for entry queries
+                        $sql = "INSERT INTO Guestbook (full_name, email, comment) 
+                                VALUES (?, ?, ?)";
+                        $stmt = mysqli_prepare($conn, $sql);
+
+                        if ($stmt && !empty($name) && !empty($email) && !empty($comment))
+                        {       
+                            mysqli_stmt_bind_param($stmt, "sss", $first_name, $db_email, $db_comment);
+
+                            // Store form input from the user into the above variables 
+                            $first_name = $name;
+                            $db_email = $email;
+                            $db_comment = $comment;
+
+                            mysqli_stmt_execute($stmt); 
+
+                            $success_message = "<br> Your comment has been successfully sent!";
+                            echo $success_message;
+                        } else {
+                            $success_message = "Couldn't save your comment";
+                        }  
                     }
+
+                    // Dynamically display the contents of the database table for users to see previous comments 
+                    $sql = "SELECT full_name, email, comment, reg_date
+                            FROM Guestbook 
+                            ORDER BY reg_date DESC";
+                    $result = mysqli_query($conn, $sql);
+
+                    if (mysqli_num_rows($result) > 0)
+                    {
+                        while ($row = mysqli_fetch_assoc($result)) // This places the content in each column into an associative array
+                        {
+                            echo $row["comment"] . "<br><br>" . $row["full_name"] . "<br>" . $row["email"] . "<br>" . $row["reg_date"] . "<br><br>_________________________<br><br>";
+                        }
+                    }
+                    // Close the connection
+                    mysqli_close($conn);
                 ?></p>
             </div>
         </div>
