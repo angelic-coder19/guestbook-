@@ -2,16 +2,34 @@
     box-sizing: border-box;
     font-family: "Geist", sans-serif;
 }
-h1{
+h2, h1{
     width: 100%;
     text-align: center;
     color: #ffffff;
 }
 #header{
     background-color: indigo;
-    padding: 5%;
-    border-radius: 15px;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
     background-size: cover;
+    position: sticky;
+    top: 0;
+    margin: 0;
+    border: 0;
+}
+#inner{
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: indigo;
+    padding-top: 3px;
+    background-size: cover;
+    margin-top: 0; 
+    border-top: none;
+}
+#header * , #inner * {
+    margin: 0;
 }
 #form{
     border-radius: 15px;
@@ -44,13 +62,9 @@ div.footer{
     text-align: center;
     color: #ffffff; 
 }
-.error{
-    color: #ff0000;
-    font-size: smaller; 
-}
 #viewComment{
     border-radius: 15px;
-    background-color: gray;
+    background-color: #ffff;
     padding: 10px;
     width: 48%;
     float: left;
@@ -68,4 +82,81 @@ div.footer{
     #form{
         margin-bottom: 2%;
     }
+}* {
+    box-sizing: border-box;
+    font-family: "Geist", sans-serif;
+}
+h2{
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+}
+#form{
+    border-radius: 15px;
+    background-color: lightgray;
+    width: 48%;
+    text-align: left;
+    font-size: smaller;
+    padding: 10px;
+    float: left;
+    height: auto;
+    margin-right: 2%;    
+}
+form#comment{
+    height: 100px;
+}
+span.emoji{
+    font-size: 18px;
+}
+textarea{
+    width: 100%;
+    height: 100px;
+    max-width: 100%;
+    min-height: 100px;
+    min-width: 100%;
+}
+div.footer{
+    position: center;
+    background-color: rgb(71, 0, 130);
+    border-radius: 15px;
+    text-align: center;
+    color: #ffffff; 
+}
+.error{
+    color: #ff0000;
+    font-size: small;
+}
+#viewComment{
+    border-radius: 15px;
+    background-color: rgb(211, 211, 211);
+    padding: 10px;
+    width: 48%;
+    float: left;
+    height: 250px;
+    overflow-y: scroll;
+}
+#ViewHeader{
+    position: sticky;
+    top: 0; 
+}
+.row::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+@media screen and (max-width: 600px){
+    #form, #viewComment {
+        width: 100%;
+    }
+    #form{
+        margin-bottom: 2%;
+    }
+}
+::-webkit-scrollbar{
+    width: 6px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-thumb{
+    background-color: rgb(70, 0, 130);
+    border-radius: 6px;
 }
