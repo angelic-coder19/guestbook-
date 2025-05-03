@@ -138,6 +138,11 @@ div.footer{
 #ViewHeader{
     position: sticky;
     top: 0; 
+    border-radius: 15px;
+    background-color:rgb(75, 0, 130);
+    color: #ffffff;
+    padding: 0.015px;
+    text-align: center;
 }
 .row::after{
     content: "";
@@ -151,12 +156,34 @@ div.footer{
     #form{
         margin-bottom: 2%;
     }
+    #viewComment {
+        height: 500px;
+    }
 }
 ::-webkit-scrollbar{
-    width: 6px;
+    width: 10px;
     background-color: transparent;
 }
 ::-webkit-scrollbar-thumb{
     background-color: rgb(70, 0, 130);
-    border-radius: 6px;
+    border-radius: 20px;
+}
+#button{
+    background-color: rgb(70, 0, 130);
+    border-radius: 2px;
+    color: #ffffff;
+}
+#credits{
+    font-size: small;
+}
+a{
+    text-decoration-line: solid 10px;
+    text-decoration-thickness: 2px;
+    font-weight: 800;
+    color: #ffffff;
+}
+#comment_count{
+    position: sticky;
+    bottom: 0;
+    text-align: right;
 }
