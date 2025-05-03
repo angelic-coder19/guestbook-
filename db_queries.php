@@ -38,7 +38,17 @@
             WHERE full_name = '       '";
     mysqli_query($conn, $sql);
     
- 
+    // To return the number of comments in the database 
+    $sql = "SELECT COUNT(*) AS count FROM Guestbook";
+    $result = mysqli_query($conn, $sql);
+    
+    if(mysqli_num_rows($result))
+    {
+        while ($row = mysqli_fetch_assoc($result))
+        {
+             $comment_count = $row['count'];
+        }
+    }
 
     // Close connection 
     //mysqli_close($conn);
