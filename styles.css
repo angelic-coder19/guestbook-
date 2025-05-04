@@ -54,8 +54,9 @@ textarea{
     max-width: 100%;
     min-height: 100px;
     min-width: 100%;
+    max-height: 500px;
 }
-div.footer{
+div.footer {
     position: center;
     background-color: rgb(75, 0, 130);
     border-radius: 15px;
@@ -68,7 +69,7 @@ div.footer{
     padding: 10px;
     width: 48%;
     float: left;
-    height: 250px;
+    height: 50px;
 }
 .row::after{
     content: "";
@@ -99,7 +100,7 @@ h2{
     font-size: smaller;
     padding: 10px;
     float: left;
-    height: auto;
+    height: 400px;
     margin-right: 2%;    
 }
 form#comment{
@@ -110,13 +111,12 @@ span.emoji{
 }
 textarea{
     width: 100%;
-    height: 100px;
+    height: 255px;
     max-width: 100%;
     min-height: 100px;
     min-width: 100%;
 }
-div.footer{
-    position: center;
+.footer{
     background-color: rgb(71, 0, 130);
     border-radius: 15px;
     text-align: center;
@@ -132,8 +132,9 @@ div.footer{
     padding: 10px;
     width: 48%;
     float: left;
-    height: 250px;
+    height: 400px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 #ViewHeader{
     position: sticky;
@@ -155,9 +156,16 @@ div.footer{
     }
     #form{
         margin-bottom: 2%;
+        height: 250px;
     }
     #viewComment {
         height: 500px;
+    }
+    #footer{
+        position: absolute;
+    }
+    textarea{
+        height: 100px;
     }
 }
 ::-webkit-scrollbar{
@@ -175,10 +183,11 @@ div.footer{
 }
 #credits{
     font-size: small;
+    padding-bottom: 10px;
 }
 a{
     text-decoration-line: solid 10px;
-    text-decoration-thickness: 2px;
+    text-decoration-thickness: 1px;
     font-weight: 800;
     color: #ffffff;
 }
@@ -186,4 +195,21 @@ a{
     position: sticky;
     bottom: 0;
     text-align: right;
+}
+span {
+    font-size: 11px;
+    line-height: 0.2;
+}
+#line{
+    font-family: sans-serif;
+    padding: 0;
+}
+.aboutpara{
+    padding-top: 0;
+    margin: 5px;
+}
+h3#OurNdola{
+    padding-top: 10px;
+    padding-bottom: -10px;
+    margin: 5px;
 }
